@@ -1,6 +1,5 @@
 {% set name = "netifaces" %}
 {% set version = "0.11.0" %}
-{% set bundle = "tar.gz" %}
 {% set hash_val = "043a79146eb2907edf439899f262b3dfe41717d34124298ed281139a8b93ca32" %}
 
 package:
@@ -8,7 +7,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.{{ bundle }}
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: {{ hash_val }}
 
 build:
