@@ -1,20 +1,18 @@
 {% set name = "netifaces" %}
-{% set version = "0.10.9" %}
-{% set bundle = "tar.gz" %}
-{% set hash_val = "2dee9ffdd16292878336a58d04a20f0ffe95555465fee7c9bd23b3490ef2abf3" %}
+{% set version = "0.11.0" %}
+{% set hash_val = "043a79146eb2907edf439899f262b3dfe41717d34124298ed281139a8b93ca32" %}
 
 package:
   name: {{ name }}
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.{{ bundle }}
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.{{ bundle }}
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: {{ hash_val }}
 
 build:
-  number: 1004
-  script: {{ PYTHON }} -m pip install . --no-deps -vv
+  number: 0
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
 
 requirements:
@@ -23,21 +21,31 @@ requirements:
   host:
     - python
     - pip
-
+    - setuptools
+    - wheel
   run:
     - python
 
 test:
+  requires:
+    - pip
   imports:
     - netifaces
+  commands:
+    - pip check
 
 about:
   home: https://github.com/al45tair/netifaces
   license: MIT
   license_family: MIT
   license_file: LICENSE
-  summary: 'Portable network interface information.'
+  summary: Portable network interface information.
+  description: |
+    A portable third-party library in Python to enumerate network interfaces on local machine.
+    netifaces takes care of enumerating interfaces, network addresses and also preserves the 
+    portability(works on all nix systems at least).
   dev_url: https://github.com/al45tair/netifaces
+  doc_url: https://0xbharath.github.io/python-network-programming/libraries/netifaces/index.html
 
 extra:
   recipe-maintainers:
